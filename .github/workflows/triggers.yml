@@ -1,0 +1,18 @@
+name: Conoce los principales Triggers
+on: #Acaparará los triggers de este workflow
+	pull_request: #El tipo de trigger: pr
+		types: #Los estados que activarán el trigger
+			- [opened, labeled] #Tomará los estados del PR
+		branches: #Las ramas en las que se activará el workflow
+			- 'releases/**' #En la rama releases y derivados
+		paths: #Serán las rutas que se tendrán en cuenta para activar el workflow
+			- '**.py' #Todos los archivos .js en el repositorio
+on: #Acaparará los triggers de este workflow
+	issues: #El tipo de trigger: issues
+		types: #Los estados que activarán el trigger
+			- [opened, edited, closed]
+on: issue_comment
+jobs:
+	pr_commented:
+		name : PR comment
+		if : ${{ github.event.issue.pull_request }}	
